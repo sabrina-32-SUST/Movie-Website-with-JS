@@ -16,9 +16,7 @@ const  movieSearchable = document.querySelector('#movies-searchable');
 function movieSection(movies){
   return  movies.map((movie) =>{
       if(movie.poster_path){
-        return `
-        <img src = ${IMAGE_URL + movie.poster_path} data-movie-id = ${movie.id}>
-        `;
+        return `<img src = ${IMAGE_URL + movie.poster_path} data-movie-id = ${movie.id}>`;
       }
       
     } )
@@ -45,8 +43,8 @@ function  createMovieContainer(movies){
 
 function renderSearchMovies(data) {
     movieSearchable.innerHTML ='';
-    
-    const  movies = data.results;
+
+     const  movies = data.results;
 
      const movieBlock =  createMovieContainer(movies);
 
@@ -71,6 +69,9 @@ fetch(newUrl)
       console.log('Error: ', error);
 
   });
+
+  inputElement.value = '';
+  
 
 console.log('Value: ', value);
 
