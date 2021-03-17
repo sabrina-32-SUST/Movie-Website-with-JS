@@ -10,7 +10,7 @@ const  IMAGE_URL = 'https://image.tmdb.org/t/p/w500/';
 const  buttoneElement = document.querySelector('#search');
 const  inputElement = document.querySelector('#inputValue');
 const  movieSearchable = document.querySelector('#movies-searchable');
-
+ 
 
 
 function movieSection(movies){
@@ -71,8 +71,19 @@ fetch(newUrl)
   });
 
   inputElement.value = '';
-  
+
 
 console.log('Value: ', value);
 
+}
+
+// event Delegation
+document.onclick = function (event) {
+    const  target =  event.target;
+    if(target.tagName.toLowerCase()==='img')
+    {
+        console.log('hello ');
+
+    }
+    
 }
