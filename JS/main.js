@@ -15,9 +15,12 @@ const  movieSearchable = document.querySelector('#movies-searchable');
 
 function movieSection(movies){
   return  movies.map((movie) =>{
+      if(movie.poster_path){
         return `
         <img src = ${IMAGE_URL + movie.poster_path} data-movie-id = ${movie.id}>
         `;
+      }
+      
     } )
 }
 
@@ -40,6 +43,17 @@ function  createMovieContainer(movies){
 
 }
 
+function renderSearchMovies(data) {
+    movieSearchable.innerHTML ='';
+    
+    const  movies = data.results;
+
+     const movieBlock =  createMovieContainer(movies);
+
+     movieSearchable.appendChild(movieBlock);
+      console.log('Data: ',  data);
+
+}
 
 
 
@@ -52,15 +66,7 @@ const  newUrl = url + '&query=' + value;
 
 fetch(newUrl)
   .then((res)=>res.json())
-  .then((data)=> {
-      const  movies = data.results;
-
-     const movieBlock =  createMovieContainer(movies);
-
-     movieSearchable.appendChild(movieBlock);
-      console.log('Data: ',  data);
-
-  })
+  .then(renderSearchMovies)
   .catch((error)=>{
       console.log('Error: ', error);
 
