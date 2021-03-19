@@ -82,7 +82,8 @@ document.onclick = function (event) {
 const target = event.target;
 if(target.tagName.toLowerCase()==='img')
 {
-    console.log('hello');
+const  movieId = target.dataset.movieId;
+    console.log('movie Id: ' ,movieId);
     const  section = event.target.parentElement;
     const  content = section.nextElementSibling;
     content.classList.add('content-display');
@@ -94,7 +95,7 @@ if(target.id==='content-close'){
 
     const  content = target.parentElement;
     content.classList.remove('content-display');
-    
+
 }
 
  }
