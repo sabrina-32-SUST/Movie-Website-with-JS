@@ -86,8 +86,15 @@ if(target.tagName.toLowerCase()==='img')
     const  section = event.target.parentElement;
     const  content = section.nextElementSibling;
     content.classList.add('content-display');
-    
+
 
 }
+ 
+if(target.id==='content-close'){
+
+    const  content = target.parentElement;
+    content.classList.remove('content-display');
     
 }
+
+ }
