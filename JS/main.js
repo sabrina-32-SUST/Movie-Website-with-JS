@@ -32,7 +32,7 @@ function  createMovieContainer(movies){
     ${movieSection(movies)}
 
     </section>
-<div  class='content'>
+<div  class='content '>
 <p id="content-close">X</p>
 
              `;
@@ -79,11 +79,15 @@ console.log('Value: ', value);
 
 // event Delegation
 document.onclick = function (event) {
-    const  target =  event.target;
-    if(target.tagName.toLowerCase()==='img')
-    {
-        console.log('hello ');
+const target = event.target;
+if(target.tagName.toLowerCase()==='img')
+{
+    console.log('hello');
+    const  section = event.target.parentElement;
+    const  content = section.nextElementSibling;
+    content.classList.add('content-display');
+    
 
-    }
+}
     
 }

@@ -54,5 +54,11 @@ margin-bottom: 1rem;
 
  .content{
      border:  1px  solid red;
-     height: ;
+     height:300px ;
+     display: none;
+
+ }
+
+ .content-display{
+     display: block;
  }
