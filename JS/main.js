@@ -16,7 +16,8 @@ function generateUrl(path) {
 const  buttoneElement = document.querySelector('#search');
 const  inputElement = document.querySelector('#inputValue');
 const  movieSearchable = document.querySelector('#movies-searchable');
- 
+ const  moviesContainer = document.querySelector('#movies-container');
+
 
 
 function requestMovies(url,  onComplete, onError) {
@@ -36,12 +37,11 @@ function searchMovie(value) {
     
 }
 
-
 function getUpcomingMovie() {
 
     const  path = '/movie/upcoming';
     const url = generateUrl(path);
-    requestMovies(url,renderSearchMovies, handleError);
+    requestMovies(url,renderMovies, handleError);
 
     
 }
@@ -50,22 +50,19 @@ function getTopRatedMovie() {
 
     const  path = '/movie/top_rated';
     const url = generateUrl(path);
-    requestMovies(url,renderSearchMovies, handleError);
+    requestMovies(url,renderMovies, handleError);
 
     
 }
 
-function getTopRatedMovie() {
+function getPopularMovie() {
 
     const  path = '/movie/popular';
     const url = generateUrl(path);
-    requestMovies(url,renderSearchMovies, handleError);
+    requestMovies(url,renderMovies, handleError);
 
     
 }
-
-
-
 
 function movieSection(movies){
   return  movies.map((movie) =>{
@@ -97,17 +94,18 @@ function  createMovieContainer(movies){
 
 function renderSearchMovies(data) {
     movieSearchable.innerHTML ='';
-
-     const  movies = data.results;
-
+   const  movies = data.results;
      const movieBlock =  createMovieContainer(movies);
-
      movieSearchable.appendChild(movieBlock);
-      console.log('Data: ',  data);
-
+ 
 }
 
-
+function renderMovies(data) {
+     const  movies = data.results;
+     const movieBlock =  createMovieContainer(movies);
+     moviesContainer.appendChild(movieBlock);
+  
+}
 
 function handleError(error) {
     console.log('Error:', error);
@@ -208,5 +206,4 @@ if(target.id==='content-close'){
  getTopRatedMovie();
 
 
- getTopRatedMovie();
- 
+ getPopularMovie();
