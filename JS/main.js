@@ -11,6 +11,14 @@ const  buttoneElement = document.querySelector('#search');
 const  inputElement = document.querySelector('#inputValue');
 const  movieSearchable = document.querySelector('#movies-searchable');
  
+function generateUrl(path) {
+
+    const  url =  `https://api.themoviedb.org/3${path}?api_key=c6f56dd60e130c06ab6e02838322c1db`;
+    return  url;
+
+    
+}
+ 
 
 
 function movieSection(movies){
@@ -59,8 +67,8 @@ buttoneElement.onclick = function(event){
     event.preventDefault();
 
 const  value  =  inputElement.value;
-
-const  newUrl = url + '&query=' + value;
+const  path = '/search/movie';
+const  newUrl = generateUrl(path) + '&query=' +  value;
 
 fetch(newUrl)
   .then((res)=>res.json())
@@ -87,6 +95,23 @@ const  movieId = target.dataset.movieId;
     const  section = event.target.parentElement;
     const  content = section.nextElementSibling;
     content.classList.add('content-display');
+
+    const  path = `/movie/${movieId}/videos`;
+    const  url = generateUrl(path);
+
+
+    //feaching  videos
+    fetch(url)
+  .then((res)=>res.json())
+  .then((data) =>{
+
+    console.log('Videos: ', data);
+
+  })
+  .catch((error)=>{
+      console.log('Error: ', error);
+
+  });
 
 
 }
