@@ -71,31 +71,45 @@ function getPopularMovie() {
 }
 
 function movieSection(movies){
-  return  movies.map((movie) =>{
+    const section = document.createElement('section');
+    section.classList = 'section';
+
+     movies.map((movie) =>{
       if(movie.poster_path){
-        return `<img src = ${IMAGE_URL + movie.poster_path} data-movie-id = ${movie.id}>`;
-      }
+          const  img = document.createElement('img');
+          img.src = IMAGE_URL + movie.poster_path;
+          img['data-movie-id']  = IMAGE_URL + movie.poster_path;
+
+          section.appendChild(img);
+       }
       
     } )
+    return  section;
+
 }
 
 function  createMovieContainer(movies,title = ''){
     const  movieElement = document.createElement('div');
     movieElement.setAttribute('class', 'movie');
-    const  movieTemplete =`
-    <h2>${title}<h2>
-    <section class="section">
-                 
+    const header = document.createElement('h2');
+    header.innerHTML= title;
 
-    ${movieSection(movies)}
+    const  content = document.createElement('div');
+    content.classList = 'content';
+    const  contentClose = `<p id="content-close">X</p>`;
 
-    </section>
-<div  class='content '>
-<p id="content-close">X</p>
+    content.innerHTML = contentClose;
 
-             `;
-            movieElement.innerHTML = movieTemplete;
-            return movieElement;
+    const section = movieSection(movies);
+
+    
+movieElement.appendChild(header)  ;
+movieElement.appendChild(section)  ;
+
+movieElement.appendChild(content)  ;
+
+
+        return movieElement;
 
 }
 
@@ -148,7 +162,7 @@ return  iframe;
 }
 function createVideoTemplate(data, content) {
 
-    content.innerHTML= '<p id="content-close">X</p>';
+    content.innerHTML= '<p id="content-close">Movie\'s Trailers</p>';
 
     console.log('Videos: ', data);
     const videos = data.results;
