@@ -85,6 +85,20 @@ console.log('Value: ', value);
 
 }
 
+
+function createIframe(video) {
+const  iframe =  document.createElement('iframe');
+iframe.src = `https://www.youtube.com/embed/${video.key}`;
+
+iframe.width = 360;
+iframe.height = 315;
+iframe.allowFullscreen = true;
+
+return  iframe;
+
+    
+}
+
 // event Delegation
 document.onclick = function (event) {
 const target = event.target;
@@ -106,6 +120,19 @@ const  movieId = target.dataset.movieId;
   .then((data) =>{
 
     console.log('Videos: ', data);
+    const videos = data.results;
+    const  lenght = videos.length>4?4:videos.length;
+    const  iframeContainer = document.createElement('div');
+
+
+    for(  let  i =0;  i<data.results.length;i++){
+
+        const  video = videos[i];
+        const  iframe = createIframe(video);
+        iframeContainer.appendChild(iframe);
+        content.appendChild(iframeContainer);
+
+    }
 
   })
   .catch((error)=>{
