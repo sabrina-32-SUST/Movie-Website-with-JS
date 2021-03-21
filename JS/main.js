@@ -41,7 +41,9 @@ function getUpcomingMovie() {
 
     const  path = '/movie/upcoming';
     const url = generateUrl(path);
-    requestMovies(url,renderMovies, handleError);
+    const render = renderMovies.bind({title: 'Upcoming Movies'}) ;
+
+    requestMovies(url,render, handleError);
 
     
 }
@@ -50,7 +52,9 @@ function getTopRatedMovie() {
 
     const  path = '/movie/top_rated';
     const url = generateUrl(path);
-    requestMovies(url,renderMovies, handleError);
+    const render = renderMovies.bind({title: 'Top Rated Movies'}) ;
+
+    requestMovies(url,render, handleError);
 
     
 }
@@ -59,7 +63,9 @@ function getPopularMovie() {
 
     const  path = '/movie/popular';
     const url = generateUrl(path);
-    requestMovies(url,renderMovies, handleError);
+    const render = renderMovies.bind({title: 'Most Popular Movies'}) ;
+
+    requestMovies(url,render, handleError);
 
     
 }
@@ -73,10 +79,11 @@ function movieSection(movies){
     } )
 }
 
-function  createMovieContainer(movies){
+function  createMovieContainer(movies,title = ''){
     const  movieElement = document.createElement('div');
     movieElement.setAttribute('class', 'movie');
     const  movieTemplete =`
+    <h2>${title}<h2>
     <section class="section">
                  
 
@@ -102,7 +109,7 @@ function renderSearchMovies(data) {
 
 function renderMovies(data) {
      const  movies = data.results;
-     const movieBlock =  createMovieContainer(movies);
+     const movieBlock =  createMovieContainer(movies,  this.title);
      moviesContainer.appendChild(movieBlock);
   
 }
@@ -204,6 +211,5 @@ if(target.id==='content-close'){
  getUpcomingMovie();
 
  getTopRatedMovie();
-
 
  getPopularMovie();
