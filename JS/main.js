@@ -55,6 +55,16 @@ function getTopRatedMovie() {
     
 }
 
+function getTopRatedMovie() {
+
+    const  path = '/movie/popular';
+    const url = generateUrl(path);
+    requestMovies(url,renderSearchMovies, handleError);
+
+    
+}
+
+
 
 
 function movieSection(movies){
@@ -196,3 +206,7 @@ if(target.id==='content-close'){
  getUpcomingMovie();
 
  getTopRatedMovie();
+
+
+ getTopRatedMovie();
+ 
