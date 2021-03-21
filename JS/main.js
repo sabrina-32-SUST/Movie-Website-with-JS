@@ -46,7 +46,14 @@ function getUpcomingMovie() {
     
 }
 
+function getTopRatedMovie() {
 
+    const  path = '/movie/top_rated';
+    const url = generateUrl(path);
+    requestMovies(url,renderSearchMovies, handleError);
+
+    
+}
 
 
 
@@ -187,3 +194,5 @@ if(target.id==='content-close'){
 
 
  getUpcomingMovie();
+
+ getTopRatedMovie();
